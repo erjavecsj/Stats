@@ -1,6 +1,6 @@
 public class Stats {
 	public static void main(String[] args) {
-		int [] a = {1, 2, 3, 5, 9};
+		int [] a = {1, 6, 10, 14, 21, 23, 25, 27, 34};
 		System.out.println(max(a));
 		System.out.println(min(a));
 		System.out.println(mean(a));
@@ -53,6 +53,31 @@ public class Stats {
 			middle = (a[numbers -1] + a[numbers]) / 2; 
 		} else {
 			int numbers = a.length / 2;
+			middle = a[numbers];
+		}
+
+		return middle;
+	}
+
+	public static double quartile1(int [] a) {
+		double middle = 0;
+		double q1;
+		double numbers;
+		if (a.length %2 == 0) {
+			double numbers = a.length / 2;
+			if (numbers %2 == 0){
+				middle = numbers / 2;
+				q1 = a[middle] + a[middle - 1] /2;
+			} else {
+				middle = numbers / 2;
+				q1 = [numbers + 1];
+			}
+
+		} else {
+			int numbers = a.length / 2;
+			if (a[numbers]) {
+				
+			}
 			middle = a[numbers];
 		}
 
