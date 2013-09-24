@@ -5,6 +5,10 @@ public class Stats {
 		System.out.println(min(a));
 		System.out.println(mean(a));
 		System.out.println(median(a));
+		System.out.println(quartile1(a));
+		System.out.println(quartile3(a));
+		System.out.println(mode(a));
+		System.out.println(standardDeviation(a));
 
 	}
 
@@ -59,28 +63,61 @@ public class Stats {
 		return middle;
 	}
 
-	public static double quartile1(int [] a) {
-		double middle = 0;
-		double q1;
-		double numbers;
-		if (a.length %2 == 0) {
-			double numbers = a.length / 2;
-			if (numbers %2 == 0){
-				middle = numbers / 2;
-				q1 = a[middle] + a[middle - 1] /2;
-			} else {
-				middle = numbers / 2;
-				q1 = [numbers + 1];
-			}
+	public static int quartile1(int[] a) {
 
-		} else {
-			int numbers = a.length / 2;
-			if (a[numbers]) {
-				
-			}
-			middle = a[numbers];
+		double q1 = 0.0;
+
+		q1 = a[((a.length+1)/4)-1];
+
+		return q1;
+
+	}
+
+	public static int quartile3(int[] a) {
+
+		double q3 = 0.0;
+		q3 = a[((a.length+1)/4*3)-1];
+
+
+		return q3;
+
+	}
+
+	public static int mode(int a[]) {
+	    int value = 0;
+	    int maxCount = 0;
+
+	    for (int i = 0; i < a.length; i++) {
+	        int count = 0;
+	        for (int j = 0; j < a.length; j++) {
+	            if (a[j] == a[i]) {
+	            	count++;
+	        	}
+	        }	
+	        if (count > maxCount) {
+	            maxCount = count;
+	            value = a[i];
+	        }
+	    }
+
+	    return value;
+	} 
+
+	public static double standardDeviation(int a[]) {
+
+		double total = 0;
+		double difference = 0;
+		double average = mean(a);
+		double result = 0;
+
+		for (int i = 0; i < a.length; i++) {
+			difference = a[i] - average;
+			total = total + difference * difference;
 		}
 
-		return middle;
+		result = Math.sqrt(total/a.length);
+
+		return result;
+
 	}
 }
