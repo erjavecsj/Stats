@@ -57,7 +57,7 @@ public class Stats {
 			middle = (a[numbers -1] + a[numbers]) / 2; 
 		} else {
 			int numbers = a.length / 2;
-			middle = a[numbers];
+			middle = a[numbers + 1];
 		}
 
 		return middle;
