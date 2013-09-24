@@ -1,6 +1,6 @@
 public class Stats {
 	public static void main(String[] args) {
-		int [] a = {1, 6, 10, 14, 21, 23, 25, 27, 34};
+		int [] a = {2,4,4,4,5,5,7,9};
 		System.out.println(max(a));
 		System.out.println(min(a));
 		System.out.println(mean(a));
@@ -63,61 +63,73 @@ public class Stats {
 		return middle;
 	}
 
-	public static int quartile1(int[] a) {
+	public static double quartile1(int[] a) {
 
-		double q1 = 0.0;
-
-		q1 = a[((a.length+1)/4)-1];
-
-		return q1;
-
-	}
-
-	public static int quartile3(int[] a) {
-
-		double q3 = 0.0;
-		q3 = a[((a.length+1)/4*3)-1];
-
-
-		return q3;
-
-	}
-
-	public static int mode(int a[]) {
-	    int value = 0;
-	    int maxCount = 0;
-
-	    for (int i = 0; i < a.length; i++) {
-	        int count = 0;
-	        for (int j = 0; j < a.length; j++) {
-	            if (a[j] == a[i]) {
-	            	count++;
-	        	}
-	        }	
-	        if (count > maxCount) {
-	            maxCount = count;
-	            value = a[i];
-	        }
-	    }
-
-	    return value;
-	} 
-
-	public static double standardDeviation(int a[]) {
-
-		double total = 0;
-		double difference = 0;
-		double average = mean(a);
-		double result = 0;
-
-		for (int i = 0; i < a.length; i++) {
-			difference = a[i] - average;
-			total = total + difference * difference;
+		double length = a.length;
+		double quarter = length/4;
+		int placement = (int)quarter;
+		double number = 0.0;
+		double sum = a[placement] + a[placement -1];
+		if (length% 4 !=0) {
+			number = a[placement];
+		} else {
+			number = sum/2;
 		}
 
-		result = Math.sqrt(total/a.length);
+		return number;
 
-		return result;
+	}
+
+	public static double quartile3(int[] a) {
+		double length = a.length;
+		double quater = length/4;
+		double multiply = quater * 3;
+		int placement = (int)multiply;
+		double number = 0.0;
+		double sum = a[placement] + a[placement -1];
+		if (length % 4 !=0) {
+			number = a[placement];
+		} else {
+			number = sum/2;
+		}
+
+		return number;
+
+	}
+
+	public static int mode(int [] a) {
+	    int temporary, counter, number;
+	    counter=0;
+	    number=0;
+	    for (int i=0; i<a.length; i++) {
+	    	temporary =0;
+	    	for (int k=0; k<a.length; k++) {
+	    		if(a[i]==a[k]) {
+	    			temporary++;
+	    			if (counter<temporary) {
+	    				counter=temporary;
+	    				number=a[i];
+	    			}
+	    		}
+	    	}
+	    }
+
+	    return number;
+	} 
+
+	public static double standardDeviation(int [] a) {
+
+		double dev = 0;
+		double avg = mean(a);
+
+		for (int i = 0; i < a.length; i++) {
+			dev += (a[i] - avg)*(a[i] - avg);
+		}
+
+		dev = dev/ (a.length-1);
+		dev = Math.sqrt(dev);
+
+		return dev;
 
 	}
 }
